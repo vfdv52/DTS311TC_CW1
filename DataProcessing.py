@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 def load_and_select_dataset():
     # Step 1: Input dataset selection
-    dataset_choice = input("Select dataset (imdb, app, cancer, bbc): ").strip().lower()
+    dataset_choice = input("Select dataset (imdb, app, cancer, bbc, other): ").strip().lower()
 
     if dataset_choice == 'bbc':
         # Load summaries from 'dataset/bbc' directory
