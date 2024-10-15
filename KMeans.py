@@ -6,31 +6,31 @@ from sklearn.decomposition import PCA
 from DataProcessing import load_and_select_dataset, extract_bert_embeddings, match_clusters_to_labels, evaluate_model
 from sklearn.cluster import KMeans
 
-# Step 1: Load and select dataset
+# Load and select dataset
 summaries, labels, n_clusters, dataset_name = load_and_select_dataset()
 
-# Step 4: Extract BERT embeddings for the clean text
+# Extract BERT embeddings for the clean text
 X_bert = extract_bert_embeddings(summaries)
 
-# Step 6: Perform KMeans clustering on text embeddings
+# Perform KMeans clustering on text embeddings
 def perform_kmeans_clustering(X_bert, n_clusters):
     model = KMeans(n_clusters=n_clusters, random_state=42)
     return model.fit_predict(X_bert)
 
 cluster_labels = perform_kmeans_clustering(X_bert, n_clusters)
 
-# Step 7: Map each cluster label to the most common true label (majority voting)
+# Map each cluster label to the most common true label (majority voting)
 label_mapping = match_clusters_to_labels(cluster_labels, labels)
 predicted_labels = [label_mapping[cluster] for cluster in cluster_labels]
 
-# Step 8: Create output directory
+# Create output directory
 output_dir = os.path.join('results', 'KMeans', dataset_name)
 os.makedirs(output_dir, exist_ok=True)
 
-# Step 9: Evaluate the model
+# Evaluate the model
 evaluate_model(labels, predicted_labels)
 
-# Step 10: Apply PCA to reduce embeddings to 2D and plot
+# Apply PCA to reduce embeddings to 2D and plot
 pca = PCA(n_components=2)
 X_pca = pca.fit_transform(X_bert)
 

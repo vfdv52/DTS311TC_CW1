@@ -8,7 +8,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score
 from tqdm import tqdm
 
 def load_and_select_dataset():
-    # Step 1: Input dataset selection
+    # Input dataset selection
     dataset_choice = input("Select dataset (imdb, app, cancer, bbc, other): ").strip().lower()
 
     if dataset_choice == 'bbc':
@@ -63,8 +63,8 @@ def load_summaries_from_csv(filepath):
     df = df.dropna()
     if len(df) > 3000:
         df = df.sample(3000, random_state=42)  # Randomly select 3000 samples if dataset is large
-    text_column = df.columns[0]  # Assume the first column contains text
-    label_column = df.columns[1]  # Assume the second column contains labels
+    text_column = df.columns[0]  # First column contains text
+    label_column = df.columns[1]  # Second column contains labels
     
     # Convert entire text column to strings to avoid AttributeError
     df[text_column] = df[text_column].astype(str)
