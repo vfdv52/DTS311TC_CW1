@@ -31,6 +31,9 @@ def load_and_select_dataset():
         filepath = 'dataset/app/apple-twitter-sentiment-texts.csv'
         summaries, labels = load_summaries_from_csv(filepath)
         n_clusters = 3
+    elif dataset_choice == 'books':
+        summaries, labels = load_summaries('dataset/books')
+        n_clusters = 7
     else:
         raise ValueError("Invalid dataset choice. Please select from 'imdb', 'app', 'cancer', or 'bbc'.")
 
@@ -63,8 +66,12 @@ def load_summaries_from_csv(filepath):
     df = df.dropna()
     if len(df) > 3000:
         df = df.sample(3000, random_state=42)  # Randomly select 3000 samples if dataset is large
-    text_column = df.columns[0]  # First column contains text
-    label_column = df.columns[1]  # Second column contains labels
+        if 'cancer' in filepath:
+            text_column = df.columns[2]  # First column contains text
+            label_column = df.columns[1]  # Second column contains labels
+        elif 'imdb' in filepath:
+            text_column = df.columns[0]
+            label_column = df.columns[1]
     
     # Convert entire text column to strings to avoid AttributeError
     df[text_column] = df[text_column].astype(str)
