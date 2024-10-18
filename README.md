@@ -15,14 +15,18 @@ To install the required dependencies, use the following command:
 pip install -r requirements.txt
 ```
 
+In addition, this model uses BERT to extract embeddings for the algorithm. Please download BERT pre-trained models and configs from bert-base-uncased (config.json, pytorch_model.bin, tokenizer.json, tokenizer_config.json, vocab.txt)
+Link:
+[bert-base-uncased](https://huggingface.co/google-bert/bert-base-uncased)
+
+
 ## Datasets
 
 The datasets used for testing clustering algorithms can be found at the following links:
 
-1. [Computer Science Text Classification](https://www.kaggle.com/datasets/deepak711/4-subject-data-text-classification?select=Computer_Science)
-2. [Biomedical Text Publication Classification](https://www.kaggle.com/datasets/falgunipatel19/biomedical-text-publication-classification)
-3. [BBC News Summary](https://www.kaggle.com/datasets/pariza/bbc-news-summary)
-4. [News Articles](https://www.kaggle.com/datasets/asad1m9a9h6mood/news-articles)
+1. [Computer Science Text Classification (booksm)](https://www.kaggle.com/datasets/deepak711/4-subject-data-text-classification?select=Computer_Science)
+2. [Biomedical Text Publication Classification (cancer)](https://www.kaggle.com/datasets/falgunipatel19/biomedical-text-publication-classification)
+3. [BBC News Summary (bbcm)](https://www.kaggle.com/datasets/pariza/bbc-news-summary)
 
 ## Usage
 
@@ -32,4 +36,6 @@ The datasets used for testing clustering algorithms can be found at the followin
 ## Evaluation
 
 Evaluation metrics for clustering models, such as Precision, Recall, and F1 Score, are calculated in `DataProcessing.py`.
+
+
 
